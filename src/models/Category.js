@@ -1,14 +1,10 @@
 const CategorieSchema = (sequelize, DataTypes) => {
   const CategorieTable = sequelize.define('Category', {
-    id: DataTypes.INTEGER,
+    id: {type: DataTypes.INTEGER, primaryKey: true},
     name: DataTypes.STRING,
   }, {
     timestamps: false,
   });
-
-  // CategorieTable.associate = (models) => {
-  //   models.PostCategory
-  // }
 
   return CategorieTable;
 };
