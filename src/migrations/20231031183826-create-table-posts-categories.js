@@ -6,7 +6,7 @@ module.exports = {
         primaryKey: true,
         references: {
           model: 'blog_posts',
-          key: 'id'
+          key: 'id',
         },
         field: 'post_id',
       },
@@ -16,14 +16,14 @@ module.exports = {
         primaryKey: true,
         references: {
           model: 'categories',
-          key: 'id'
+          key: 'id',
         },
         field: 'category_id',
       },
-    })
+    });
   },
 
   down: async (queryInterface, _Sequelize) => {
     await queryInterface.dropTable('posts_categories');
-  }
+  },
 };
