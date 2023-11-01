@@ -4,8 +4,14 @@ const generateToken = require('../utils/generateToken');
 const login = async (email) => {
   const findUser = await User.findOne({
     where: { email },
-    attributes: { exclude: ['password'] },
+    attributes: { exclude: ['password', 'email'] },
   });
+
+  if (email === '') {
+    return {
+      codeStatus: 'BAD_REQUEST', data: { message: 'Some required fields are missing' } }; 
+  }
+
   if (!findUser) return { codeStatus: 'BAD_REQUEST', data: { message: 'Invalid fields' } };
 
   const token = generateToken(findUser.dataValues);

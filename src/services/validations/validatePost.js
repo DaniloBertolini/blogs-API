@@ -1,0 +1,9 @@
+const { postSchema } = require('./schemas');
+
+const validatePost = (body) => {
+  const { error } = postSchema.validate(body);
+  console.log(error);
+  if (error) return { codeStatus: 'BAD_REQUEST', data: { message: error.message } };
+};
+
+module.exports = validatePost;

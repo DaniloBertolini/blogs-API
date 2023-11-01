@@ -1,0 +1,39 @@
+const db = require('../models');
+const { BlogPost, User, Category, PostCategory } = require('../models');
+const validatePost = require('./validations/validatePost');
+
+const getAll = async () => {
+  const allPosts = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  return { codeStatus: 'SUCCESSFUL', data: allPosts };
+};
+
+const create = async ({ title, content, categoryIds }, user) => {
+  const t = await db.sequelize.transaction();
+  try {
+    const post = await BlogPost.create({
+      title, content, userId: user.id, published: Date.now(), updated: Date.now(),
+    }, { transaction: t });
+
+    await Category.findAll({ where: { id: categoryIds } });
+    const error = validatePost({ title, content, categoryIds });
+    if (error) return error;
+
+    await Promise.all(categoryIds.map((categoryId) =>
+      PostCategory.create({ postId: post.id, categoryId }, { transaction: t })));
+    await t.commit();
+    return { codeStatus: 'CREATED', data: post };
+  } catch (err) {
+    await t.rollback();
+    return { codeStatus: 'BAD_REQUEST', data: { message: 'one or more "categoryIds" not found' } };
+  }
+};
+
+module.exports = {
+  getAll,
+  create,
+};

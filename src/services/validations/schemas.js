@@ -18,7 +18,16 @@ const categorySchema = Joi.object({
   'string.min': '{#label} length must be at least {#limit} characters long',
 });
 
+const postSchema = Joi.object({
+  title: Joi.string().min(1),
+  content: Joi.string().min(1),
+  categoryIds: Joi.array().items(Joi.number()).label('categoryIds'),
+}).messages({
+  'string.empty': 'Some required fields are missing',
+});
+
 module.exports = {
   userSchema,
   categorySchema,
+  postSchema,
 };
