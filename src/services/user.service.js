@@ -2,6 +2,16 @@ const validateUser = require('../middlewares/validateUser');
 const { User } = require('../models');
 const generateToken = require('../utils/generateToken');
 
+const getAllUsers = async () => {
+  const users = await User.findAll({
+    attributes: {
+      exclude: ['password'],
+    },
+
+  });
+  return { codeStatus: 'SUCCESSFUL', data: users };
+};
+
 const createUser = async (body) => {
   const { email } = body;
   const error = validateUser(body);
@@ -22,4 +32,5 @@ const createUser = async (body) => {
 
 module.exports = {
   createUser,
+  getAllUsers,
 };

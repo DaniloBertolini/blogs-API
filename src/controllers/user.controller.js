@@ -1,6 +1,11 @@
 const { userService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
+const getAllUsers = async (_req, res) => {
+  const { codeStatus, data } = await userService.getAllUsers();
+  res.status(mapStatusHTTP(codeStatus)).json(data);
+};
+
 const createUser = async (req, res) => {
   const { body } = req;
   const { codeStatus, data } = await userService.createUser(body);
@@ -9,4 +14,5 @@ const createUser = async (req, res) => {
 
 module.exports = {
   createUser,
+  getAllUsers,
 };

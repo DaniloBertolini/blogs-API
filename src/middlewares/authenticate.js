@@ -3,6 +3,10 @@ const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
+function extractToken(token) {
+  return token.split(' ')[1];
+}
+
 const authenticate = (req, res, next) => {
   const { authorization } = req.headers;
 
@@ -10,8 +14,10 @@ const authenticate = (req, res, next) => {
     return res.status(mapStatusHTTP('UNAUTHORIZED')).json({ message: 'Token not found' });
   }
 
+  const token = extractToken(authorization);
+
   try {
-    const user = jwt.verify(authorization, SECRET_KEY);
+    const user = jwt.verify(token, SECRET_KEY);
     req.user = user;
     next();
   } catch (err) {
