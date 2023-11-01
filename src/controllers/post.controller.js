@@ -34,10 +34,17 @@ const exclude = async (req, res) => {
   res.status(mapStatusHTTP(codeStatus)).json(data);
 };
 
+const search = async (req, res) => {
+  const { q } = req.query;
+  const { codeStatus, data } = await postService.search(q);
+  res.status(mapStatusHTTP(codeStatus)).json(data);
+};
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
   exclude,
+  search,
 };

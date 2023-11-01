@@ -6,6 +6,7 @@ const validatePost = require('../middlewares/validatePost');
 const validatePostPut = require('../middlewares/validatePostPut');
 
 route.get('/', authenticate, postController.getAll);
+route.get('/search', authenticate, postController.search);
 route.get('/:id', authenticate, postController.getById);
 route.post('/', authenticate, validatePost, postController.create);
 route.put('/:id', authenticate, validatePostPut, postController.update);
