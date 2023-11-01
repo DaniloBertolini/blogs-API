@@ -1,4 +1,4 @@
-const validateUser = require('../middlewares/validateUser');
+const validateUser = require('./validations/validateUser');
 const { User } = require('../models');
 const generateToken = require('../utils/generateToken');
 

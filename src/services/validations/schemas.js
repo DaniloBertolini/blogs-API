@@ -11,6 +11,14 @@ const userSchema = Joi.object({
   'string.email': '"email" must be a valid email',
 });
 
+const categorySchema = Joi.object({
+  name: Joi.string().min(1).required().label('name'),
+}).messages({
+  'any.required': '{#label} is required',
+  'string.min': '{#label} length must be at least {#limit} characters long',
+});
+
 module.exports = {
   userSchema,
+  categorySchema,
 };

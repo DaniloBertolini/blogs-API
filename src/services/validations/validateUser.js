@@ -1,4 +1,4 @@
-const { userSchema } = require('../services/validations/schemas');
+const { userSchema } = require('./schemas');
 
 const validateUser = (body) => {
   const { error } = userSchema.validate(body);
