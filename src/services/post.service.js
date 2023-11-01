@@ -30,14 +30,14 @@ const create = async ({ title, content, categoryIds }, user) => {
   try {
     const post = await BlogPost.create({
       title, content, userId: user.id, published: Date.now(), updated: Date.now(),
-    }, { transaction: t });
+    });
 
     await Category.findAll({ where: { id: categoryIds } });
     const error = validatePost({ title, content, categoryIds });
     if (error) return error;
 
     await Promise.all(categoryIds.map((categoryId) =>
-      PostCategory.create({ postId: post.id, categoryId }, { transaction: t })));
+      PostCategory.create({ postId: post.id, categoryId })));
     await t.commit();
     return { codeStatus: 'CREATED', data: post };
   } catch (err) {
