@@ -19,8 +19,17 @@ const create = async (req, res) => {
   res.status(mapStatusHTTP(codeStatus)).json(data);
 };
 
+const update = async (req, res) => {
+  const { body, user } = req;
+  const { id } = req.params;
+  const { title, content } = body;
+  const { codeStatus, data } = await postService.update({ title, content }, id, user);
+  res.status(mapStatusHTTP(codeStatus)).json(data);
+};
+
 module.exports = {
   getAll,
   create,
   getById,
+  update,
 };
