@@ -9,5 +9,6 @@ route.get('/', authenticate, postController.getAll);
 route.get('/:id', authenticate, postController.getById);
 route.post('/', authenticate, validatePost, postController.create);
 route.put('/:id', authenticate, validatePostPut, postController.update);
+route.delete('/:id', authenticate, postController.exclude);
 
 module.exports = route;

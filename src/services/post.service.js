@@ -47,27 +47,31 @@ const create = async ({ title, content, categoryIds }, user) => {
 };
 
 const update = async ({ title, content }, id, user) => {
-  const t = await db.sequelize.transaction();
-  try {
-    const post = await BlogPost.findOne({ where: { id } });
-    if (!post) return { codeStatus: 'NOT_FOUND', data: { message: 'Post does not exist' } };
-    if (post.userId !== user.id) {
-      return { codeStatus: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } }; 
-    }
-
-    const error = validatePostPut({ title, content });
-    if (error) return error;
-
-    await BlogPost.update({ title, content }, { where: { id } }, { transaction: t });
-    const newPost = await BlogPost.findOne({ where: { id },
-      include: [{ model: Category, as: 'categories', through: { attributes: [] } }] });
-
-    await t.commit();
-    return { codeStatus: 'SUCCESSFUL', data: newPost };
-  } catch (err) {
-    await t.rollback();
-    return { codeStatus: 'BAD_REQUEST', data: { message: 'one or more "categoryIds" not found' } };
+  const post = await BlogPost.findOne({ where: { id } });
+  if (!post) return { codeStatus: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  if (post.userId !== user.id) {
+    return { codeStatus: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } }; 
   }
+
+  const error = validatePostPut({ title, content });
+  if (error) return error;
+
+  await BlogPost.update({ title, content }, { where: { id } });
+  const newPost = await BlogPost.findOne({ where: { id },
+    include: [{ model: Category, as: 'categories', through: { attributes: [] } }] });
+
+  return { codeStatus: 'SUCCESSFUL', data: newPost };
+};
+
+const exclude = async (id, user) => {
+  const post = await BlogPost.findOne({ where: { id } });
+  if (!post) return { codeStatus: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  if (post.userId !== user.id) {
+    return { codeStatus: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } }; 
+  }
+  await BlogPost.destroy({ where: { id } });
+
+  return { codeStatus: 'SUCCESSFUL', data: post };
 };
 
 module.exports = {
@@ -75,4 +79,5 @@ module.exports = {
   create,
   getById,
   update,
+  exclude,
 };
