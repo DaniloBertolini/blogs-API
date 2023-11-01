@@ -69,9 +69,10 @@ const exclude = async (id, user) => {
   if (post.userId !== user.id) {
     return { codeStatus: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } }; 
   }
+  await PostCategory.destroy({ where: { postId: id } });
   await BlogPost.destroy({ where: { id } });
 
-  return { codeStatus: 'SUCCESSFUL', data: post };
+  return { codeStatus: 'NO_CONTENT', data: {} };
 };
 
 module.exports = {
