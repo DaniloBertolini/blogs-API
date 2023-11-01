@@ -75,7 +75,6 @@ const exclude = async (id, user) => {
 };
 
 const search = async (q) => {
-  console.log('q:', q);
   const posts = await BlogPost.findAll({
     where: {
       [db.Sequelize.Op.or]: [
@@ -88,7 +87,6 @@ const search = async (q) => {
       { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
-  console.log('posts', posts);
   return { codeStatus: 'SUCCESSFUL', data: posts };
 };
 
