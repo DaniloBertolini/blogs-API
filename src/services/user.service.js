@@ -12,6 +12,18 @@ const getAllUsers = async () => {
   return { codeStatus: 'SUCCESSFUL', data: users };
 };
 
+const getUserById = async (id) => {
+  const user = await User.findByPk(id, {
+    attributes: {
+      exclude: ['password'],
+    },
+  });
+
+  if (!user) return { codeStatus: 'NOT_FOUND', data: { message: 'User does not exist' } };
+
+  return { codeStatus: 'SUCCESSFUL', data: user };
+};
+
 const createUser = async (body) => {
   const { email } = body;
   const error = validateUser(body);
@@ -33,4 +45,5 @@ const createUser = async (body) => {
 module.exports = {
   createUser,
   getAllUsers,
+  getUserById,
 };
