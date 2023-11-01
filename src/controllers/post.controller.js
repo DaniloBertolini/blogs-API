@@ -1,8 +1,14 @@
 const { postService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   const { codeStatus, data } = await postService.getAll();
+  res.status(mapStatusHTTP(codeStatus)).json(data);
+};
+
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const { codeStatus, data } = await postService.getById(id);
   res.status(mapStatusHTTP(codeStatus)).json(data);
 };
 
@@ -16,4 +22,5 @@ const create = async (req, res) => {
 module.exports = {
   getAll,
   create,
+  getById,
 };
