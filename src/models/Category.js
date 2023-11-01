@@ -1,12 +1,13 @@
-const CategorieSchema = (sequelize, DataTypes) => {
-  const CategorieTable = sequelize.define('Category', {
+const CategorySchema = (sequelize, DataTypes) => {
+  const CategoryTable = sequelize.define('Category', {
     id: {type: DataTypes.INTEGER, primaryKey: true},
     name: DataTypes.STRING,
   }, {
     timestamps: false,
+    tableName: 'categories',
   });
 
-  return CategorieTable;
+  return CategoryTable;
 };
 
-module.exports = CategorieSchema;
+module.exports = CategorySchema;

@@ -8,6 +8,7 @@ const UserSchema = (sequelize, DataTypes) => {
   }, {
     timestamps: false,
     underscored: true,
+    tableName: 'users',
   })
 
   UserTable.associate = (models) => {
