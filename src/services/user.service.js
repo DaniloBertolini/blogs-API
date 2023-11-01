@@ -42,8 +42,14 @@ const createUser = async (body) => {
   return { codeStatus: 'CREATED', data: { token } };
 };
 
+const deleteUser = async (id) => {
+  await User.destroy({ where: { id } });
+  return { codeStatus: 'NO_CONTENT', data: {} };
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  deleteUser,
 };

@@ -9,6 +9,8 @@ module.exports = {
           key: 'id',
         },
         field: 'post_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
 
       categoryId: {
@@ -19,6 +21,8 @@ module.exports = {
           key: 'id',
         },
         field: 'category_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
     });
   },
