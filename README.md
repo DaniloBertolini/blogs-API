@@ -1,8 +1,8 @@
-# [API Blog]()
+# :pencil: [API Blog]()
 
 Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvolvida uma aplicação em Node.js utilizando o pacote sequelize para criação de um CRUD de posts, com validação do usuário utilizando a biblioteca JsonWebToken.
 
-## Tecnologias
+## :bomb: Tecnologias
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [MySQL](https://www.mysql.com/)
@@ -15,13 +15,13 @@ Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvo
 - [Docker](https://www.docker.com/)
 - [Docker-Compose](https://docs.docker.com/compose/)
 
-## Funcionalidades
+## :bulb: Funcionalidades
 
 - Endpoints que serão conectados ao banco de dados
 - Controle de usuários através de validação JWT.
 - É necessário um login para faer uma postagem.
 
-## Como acessar com Docker
+## :whale2: Como acessar com Docker
   **:warning: Antes de começar, seu docker-compose precisa estar na versão 1.29 ou superior. [Veja aqui](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt) ou [na documentação](https://docs.docker.com/compose/install/) como instalá-lo. No primeiro artigo, você pode substituir onde está `1.26.0` por `1.29.2`.**
 
   - Abra o terminal e clone o repositório.
@@ -46,7 +46,7 @@ Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvo
   ```
   - [Now go to HTTP requests](#http).
 
-## Como acessar localmente
+## :books: Como acessar localmente
 
   - Abra o terminal e clone o repositório.
   ```bash
@@ -62,7 +62,7 @@ Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvo
     env $(cat .env) npm run dev
   ```
 
-## Usando solicitações HTTP para usar a API
+## :zap: Usando solicitações HTTP para usar a API
   - Acesse uma plataforma de sua preferência para fazer solicitações HTTP, como [ThunderClient](https://www.thunderclient.com/) ou [Insomnia](https://insomnia.rest/) 
   - Importe o arquivo de solicitação HTTP válido para sua plataforma da past `requestCollection`.
   - Agora você pode testar esta API.
