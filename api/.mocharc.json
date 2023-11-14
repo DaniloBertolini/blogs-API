@@ -1,4 +1,0 @@
-{
-  "spec": ["tests/**/*.test.js", "tests/*.test.js"],
-  "exit": true
-}

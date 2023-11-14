@@ -6,8 +6,8 @@ const { loginRoutes, userRoutes, categoriesRoutes, postRoutes } = require('./rou
 const app = express();
 
 // não remova ou mova esse endpoint
-app.get('/', (_request, response) => {
-  response.send();
+app.get('/health', (_request, response) => {
+  response.status(200).json({ message: 'ok' });
 });
 
 app.use(express.json());
