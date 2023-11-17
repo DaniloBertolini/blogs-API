@@ -23,44 +23,48 @@ Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvo
 
 ## :computer: Utilização
 
-1. **GET /Login**
+1. **GET /health**
+   - Retorna uma mensagem confirmando que o Serviço está funcionando.
+
+2. **GET /Login**
    - Retorna um token do Usuário que acabou de Logar.
 
-2. **GET /user**
+3. **GET /user**
    - Retorna uma lista com todos os Usuários.
 
-3. **GET /user/:id**
+4. **GET /user/:id**
    - Retorna um Usuário em específico pelo ID.
    
-4. **POST /user**
+5. **POST /user**
    - Cadastra um Usuário novo.
 
-5. **DELETE /user/me**
+6. **DELETE /user/me**
    - Deleta o usuário logado no momento.
 
-6. **GET /categories**
+7. **GET /categories**
    - Retorna uma lista com todas as categorias.
 
-7. **POST /categories**
+8. **POST /categories**
    - Cria uma categoria.
 
-8. **GET /post**
-   - Retorna uma lista com todas as Postagens
+9. **GET /post**
+   - Retorna uma lista com todas as Postagens.
 
-9. **GET /post/:id**
+1. **GET /post/:id**
    - Retorna uma Postagem em específico pelo ID.
 
-10. **GET /post/search?q=vamo**
-    - Retorna uma lista com todas as Postagens que contenham no Título ou no Conteúdo, a palavra buscada.
+2. **GET /Login**
+   - Retorna uma lista com todas as Postagens que contenham no Título ou no Conteúdo, a palavra buscada.
 
-11. **POST /post**
-    - Cria uma nova Postagem.
+3. **GET /user**
+   - Cria uma nova Postagem.
 
-12. **PUT /post/:id**
-    - Altera o Título e o Conteúdo da Postagem em específico pelo ID.
+4. **GET /user/:id**
+   - Altera o Título e o Conteúdo da Postagem em específico pelo ID.
+   
+5. **POST /user**
+   - Deleta uma Postagem em específico pelo ID.
 
-13. **DELETE /post/:id**
-    - Deleta uma Postagem em específico pelo ID.
 
 ## :whale2: Como acessar com Docker
   **:warning: Antes de começar, seu docker-compose precisa estar na versão 1.29 ou superior. [Veja aqui](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt) ou [na documentação](https://docs.docker.com/compose/install/) como instalá-lo. No primeiro artigo, você pode substituir onde está `1.26.0` por `1.29.2`.**
