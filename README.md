@@ -21,7 +21,7 @@ Uma API e um banco de dados para produção de conteúdo em um blog! Foi desenvo
 - Controle de usuários através de validação JWT.
 - É necessário um login para faer uma postagem.
 
-## Utilização
+## :computer: Utilização
 
 1. **GET /Login**
    - Retorna um token do Usuário que acabou de Logar.
